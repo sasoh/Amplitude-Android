@@ -2181,11 +2181,12 @@ public class AmplitudeClient {
                 final long maxEventId = merged.first.first;
                 final long maxIdentifyId = merged.first.second;
                 final String mergedEventsString = merged.second.toString();
+                final String mergedEventsPosemeshString = new JSONObject().put("events", mergedEvents).toString();
 
                 httpThread.post(new Runnable() {
                     @Override
                     public void run() {
-                        makeEventUploadPostRequest(callFactory, mergedEventsString, maxEventId, maxIdentifyId);
+                        makeEventUploadPostRequest(callFactory, mergedEventsPosemeshString, maxEventId, maxIdentifyId);
                     }
                 });
             } catch (JSONException e) {
