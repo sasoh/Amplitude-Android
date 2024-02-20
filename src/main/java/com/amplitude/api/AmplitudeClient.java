@@ -21,6 +21,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.io.DataOutputStream;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -28,6 +29,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.net.URL;
+import java.net.HttpURLConnection;
 
 import kotlin.Unit;
 import okhttp3.Call;
@@ -2273,39 +2276,26 @@ public class AmplitudeClient {
      * @param maxIdentifyId the max identify id
      */
     protected void makeEventUploadPostRequest(Call.Factory client, String events, final long maxEventId, final long maxIdentifyId) {
-        String apiVersionString = "" + Constants.API_VERSION;
-        String timestampString = "" + getCurrentTimeMillis();
-
-        FormBody body = new FormBody.Builder()
-            .add("v", apiVersionString)
-            .add("client", apiKey)
-            .add("e", events)
-            .add("upload_time", timestampString)
-            .build();
-
-        Request request;
-        try {
-             Request.Builder builder = new Request.Builder()
-                     .url(url)
-                     .post(body);
-
-             if (!Utils.isEmptyString(bearerToken)) {
-                builder.addHeader("Authorization", "Bearer " + bearerToken);
-             }
-
-             request = builder.build();
-        } catch (IllegalArgumentException e) {
-            logger.e(TAG, e.toString());
-            uploadingCurrently.set(false);
-            return;
-        }
-
         boolean uploadSuccess = false;
 
         try {
-            Response response = client.newCall(request).execute();
-            String stringResponse = response.body().string();
-            if (response.code() == 200) {
+            URL requestUrl = new URL(url);
+            HttpURLConnection conn = (HttpURLConnection) requestUrl.openConnection();
+            conn.setRequestMethod("POST");
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setRequestProperty("Accept","application/json");
+            conn.setDoOutput(true);
+            conn.setDoInput(true);
+
+            DataOutputStream os = new DataOutputStream(conn.getOutputStream());
+            os.writeBytes(events);
+            os.flush();
+            os.close();
+            conn.disconnect();
+
+            String stringResponse = String.valueOf(conn.getResponseCode());
+            int responseCode = conn.getResponseCode();
+            if (responseCode == 200) {
                 uploadSuccess = true;
                 logThread.post(new Runnable() {
                     @Override
@@ -2327,12 +2317,12 @@ public class AmplitudeClient {
                         }
                     }
                 });
-            } else if (response.code() == 400 && stringResponse.equals("invalid_api_key")) {
+            } else if (responseCode == 400 && stringResponse.equals("invalid_api_key")) {
                 logger.e(TAG, "Invalid API key, make sure your API key is correct in initialize()");
-            } else if (response.code() == 400 && stringResponse.equals("bad_checksum")) {
+            } else if (responseCode == 400 && stringResponse.equals("bad_checksum")) {
                 logger.w(TAG,
                         "Bad checksum, post request was mangled in transit, will attempt to reupload later");
-            } else if (response.code() == 413) {
+            } else if (responseCode == 413) {
 
                 // If blocked by one massive event, drop it
                 if (backoffUpload && backoffUploadBatchSize == 1) {
