@@ -2291,10 +2291,11 @@ public class AmplitudeClient {
             os.writeBytes(events);
             os.flush();
             os.close();
-            conn.disconnect();
 
             String stringResponse = String.valueOf(conn.getResponseCode());
             int responseCode = conn.getResponseCode();
+            conn.disconnect();
+
             if (responseCode == 200) {
                 uploadSuccess = true;
                 logThread.post(new Runnable() {

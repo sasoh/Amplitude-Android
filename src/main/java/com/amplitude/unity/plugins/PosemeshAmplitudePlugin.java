@@ -14,7 +14,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class AmplitudePlugin {
+public class PosemeshAmplitudePlugin {
 
     public static JSONObject ToJSONObject(String jsonString) {
         JSONObject properties = null;
