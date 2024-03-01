@@ -19,7 +19,7 @@ import java.util.Set;
  *  property will be saved, and the rest will be ignored.
  *  <br><br>
  *  After creating an Identify object and setting the desired operations, send it to Amplitude
- *  servers by calling {@code Amplitude.getInstance().identify(identify);} and pass in the object.
+ *  servers by calling {@code PosemeshAmplitude.getInstance().identify(identify);} and pass in the object.
  *
  *  @see <a href="https://github.com/amplitude/Amplitude-Android#user-properties-and-user-property-operations">
  *      Android SDK README</a> for more information on the Identify API and user property operations.

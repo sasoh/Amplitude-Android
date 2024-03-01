@@ -13,11 +13,11 @@ import java.util.Map;
  * This is the main Amplitude class that manages SDK instances. <br><br>
  * <b>NOTE:</b> All of the methods except {@code getInstance()} have been deprecated.
  * Please call those methods on the AmplitudeClient instance instead, for example:
- * {@code Amplitude.getInstance().logEvent();}
+ * {@code PosemeshAmplitude.getInstance().logEvent();}
  *
  * @see com.amplitude.api.AmplitudeClient AmplitudeClient
  */
-public class Amplitude {
+public class PosemeshAmplitude {
 
     static final Map<String, AmplitudeClient> instances = new HashMap<String, AmplitudeClient>();
 

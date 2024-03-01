@@ -13,7 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.amplitude.R;
-import com.amplitude.api.Amplitude;
+import com.amplitude.api.PosemeshAmplitude;
 
 public class EventExplorerInfoActivity extends Activity {
     private ImageView closeImageView;
@@ -42,8 +42,8 @@ public class EventExplorerInfoActivity extends Activity {
         Intent intent = getIntent();
         String instanceName = intent.getExtras().getString("instanceName");
 
-        String deviceId = Amplitude.getInstance(instanceName).getDeviceId();
-        String userId = Amplitude.getInstance(instanceName).getUserId();
+        String deviceId = PosemeshAmplitude.getInstance(instanceName).getDeviceId();
+        String userId = PosemeshAmplitude.getInstance(instanceName).getUserId();
 
         this.deviceIdTextView.setText(deviceId != null ? deviceId : getString(R.string.amp_label_not_avail));
         this.userIdTextView.setText(userId != null ? userId : getString(R.string.amp_label_not_avail));

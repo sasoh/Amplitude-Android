@@ -39,9 +39,9 @@ import okhttp3.Response;
  * <h1>AmplitudeClient</h1>
  * This is the SDK instance class that contains all of the SDK functionality.<br><br>
  * <b>Note:</b> call the methods on the default shared instance in the Amplitude class,
- * for example: {@code Amplitude.getInstance().logEvent();}<br><br>
+ * for example: {@code PosemeshAmplitude.getInstance().logEvent();}<br><br>
  * Many of the SDK functions return the SDK instance back, allowing you to chain multiple method
- * calls together, for example: {@code Amplitude.getInstance().initialize(this, "APIKEY").enableForegroundTracking(getApplication())}
+ * calls together, for example: {@code PosemeshAmplitude.getInstance().initialize(this, "APIKEY").enableForegroundTracking(getApplication())}
  */
 public class AmplitudeClient {
 

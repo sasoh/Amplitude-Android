@@ -34,37 +34,37 @@ public class AmplitudeTest extends BaseTest {
 
     @Test
     public void testGetInstance() {
-        AmplitudeClient a = Amplitude.getInstance();
-        AmplitudeClient b = Amplitude.getInstance("");
-        AmplitudeClient c = Amplitude.getInstance(null);
-        AmplitudeClient d = Amplitude.getInstance(Constants.DEFAULT_INSTANCE);
-        AmplitudeClient e = Amplitude.getInstance("app1");
-        AmplitudeClient f = Amplitude.getInstance("app2");
+        AmplitudeClient a = PosemeshAmplitudegetInstance();
+        AmplitudeClient b = PosemeshAmplitudegetInstance("");
+        AmplitudeClient c = PosemeshAmplitudegetInstance(null);
+        AmplitudeClient d = PosemeshAmplitudegetInstance(Constants.DEFAULT_INSTANCE);
+        AmplitudeClient e = PosemeshAmplitudegetInstance("app1");
+        AmplitudeClient f = PosemeshAmplitudegetInstance("app2");
 
         assertSame(a, b);
         assertSame(b, c);
         assertSame(c, d);
-        assertSame(d, Amplitude.getInstance());
+        assertSame(d, PosemeshAmplitudegetInstance());
         assertNotSame(d, e);
-        assertSame(e, Amplitude.getInstance("app1"));
+        assertSame(e, PosemeshAmplitudegetInstance("app1"));
         assertNotSame(e, f);
-        assertSame(f, Amplitude.getInstance("app2"));
+        assertSame(f, PosemeshAmplitudegetInstance("app2"));
 
         // test for instance name case insensitivity
-        assertSame(e, Amplitude.getInstance("APP1"));
-        assertSame(e, Amplitude.getInstance("App1"));
-        assertSame(e, Amplitude.getInstance("aPP1"));
-        assertSame(e, Amplitude.getInstance("apP1"));
+        assertSame(e, PosemeshAmplitudegetInstance("APP1"));
+        assertSame(e, PosemeshAmplitudegetInstance("App1"));
+        assertSame(e, PosemeshAmplitudegetInstance("aPP1"));
+        assertSame(e, PosemeshAmplitudegetInstance("apP1"));
 
-        assertTrue(Amplitude.instances.size() == 3);
-        assertTrue(Amplitude.instances.containsKey(Constants.DEFAULT_INSTANCE));
-        assertTrue(Amplitude.instances.containsKey("app1"));
-        assertTrue(Amplitude.instances.containsKey("app2"));
+        assertTrue(PosemeshAmplitude.instances.size() == 3);
+        assertTrue(PosemeshAmplitude.instances.containsKey(Constants.DEFAULT_INSTANCE));
+        assertTrue(PosemeshAmplitude.instances.containsKey("app1"));
+        assertTrue(PosemeshAmplitude.instances.containsKey("app2"));
     }
 
     @Test
     public void testSeparateInstancesLogEventsSeparately() {
-        Amplitude.instances.clear();
+        PosemeshAmplitude.instances.clear();
         DatabaseHelper.instances.clear();
 
         String newInstance1 = "newApp1";
@@ -84,41 +84,41 @@ public class AmplitudeTest extends BaseTest {
         oldDbHelper.addIdentify("oldIdentify2");
 
         // Verify persistence of old database file in default instance
-        Amplitude.getInstance().initialize(context, apiKey);
-        Shadows.shadowOf(Amplitude.getInstance().logThread.getLooper()).runToEndOfTasks();
-        assertEquals(Amplitude.getInstance().getDeviceId(), "oldDeviceId");
-        assertEquals(Amplitude.getInstance().getNextSequenceNumber(), 1001L);
+        PosemeshAmplitude.getInstance().initialize(context, apiKey);
+        Shadows.shadowOf(PosemeshAmplitude.getInstance().logThread.getLooper()).runToEndOfTasks();
+        assertEquals(PosemeshAmplitude.getInstance().getDeviceId(), "oldDeviceId");
+        assertEquals(PosemeshAmplitude.getInstance().getNextSequenceNumber(), 1001L);
         assertTrue(oldDbHelper.dbFileExists());
         assertFalse(newDbHelper1.dbFileExists());
         assertFalse(newDbHelper2.dbFileExists());
 
         // init first new app and verify separate database file
-        Amplitude.getInstance(newInstance1).initialize(context, newApiKey1);
+        PosemeshAmplitude.getInstance(newInstance1).initialize(context, newApiKey1);
         Shadows.shadowOf(
-            Amplitude.getInstance(newInstance1).logThread.getLooper()
+            PosemeshAmplitude.getInstance(newInstance1).logThread.getLooper()
         ).runToEndOfTasks();
         assertTrue(newDbHelper1.dbFileExists()); // db file is created after deviceId initialization
 
         assertFalse(newDbHelper1.getValue("device_id").equals("oldDeviceId"));
         assertEquals(
-            newDbHelper1.getValue("device_id"), Amplitude.getInstance(newInstance1).getDeviceId()
+            newDbHelper1.getValue("device_id"), PosemeshAmplitude.getInstance(newInstance1).getDeviceId()
         );
-        assertEquals(Amplitude.getInstance(newInstance1).getNextSequenceNumber(), 1L);
+        assertEquals(PosemeshAmplitude.getInstance(newInstance1).getNextSequenceNumber(), 1L);
         assertEquals(newDbHelper1.getEventCount(), 0);
         assertEquals(newDbHelper1.getIdentifyCount(), 0);
 
         // init second new app and verify separate database file
-        Amplitude.getInstance(newInstance2).initialize(context, newApiKey2);
+        PosemeshAmplitude.getInstance(newInstance2).initialize(context, newApiKey2);
         Shadows.shadowOf(
-            Amplitude.getInstance(newInstance2).logThread.getLooper()
+            PosemeshAmplitude.getInstance(newInstance2).logThread.getLooper()
         ).runToEndOfTasks();
         assertTrue(newDbHelper2.dbFileExists()); // db file is created after deviceId initialization
 
         assertFalse(newDbHelper2.getValue("device_id").equals("oldDeviceId"));
         assertEquals(
-            newDbHelper2.getValue("device_id"), Amplitude.getInstance(newInstance2).getDeviceId()
+            newDbHelper2.getValue("device_id"), PosemeshAmplitude.getInstance(newInstance2).getDeviceId()
         );
-        assertEquals(Amplitude.getInstance(newInstance2).getNextSequenceNumber(), 1L);
+        assertEquals(PosemeshAmplitude.getInstance(newInstance2).getNextSequenceNumber(), 1L);
         assertEquals(newDbHelper2.getEventCount(), 0);
         assertEquals(newDbHelper2.getIdentifyCount(), 0);
 

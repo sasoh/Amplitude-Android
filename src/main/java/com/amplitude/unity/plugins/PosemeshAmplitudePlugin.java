@@ -3,7 +3,7 @@ package com.amplitude.unity.plugins;
 import android.app.Application;
 import android.content.Context;
 
-import com.amplitude.api.Amplitude;
+import com.amplitude.api.PosemeshAmplitude;
 import com.amplitude.api.AmplitudeServerZone;
 import com.amplitude.api.Identify;
 import com.amplitude.api.Revenue;
@@ -35,11 +35,11 @@ public class PosemeshAmplitudePlugin {
     }
 
     public static void init(String instanceName, Context context, String apiKey) {
-        Amplitude.getInstance(instanceName).initialize(context, apiKey);
+        PosemeshAmplitude.getInstance(instanceName).initialize(context, apiKey);
     }
 
     public static void init(String instanceName, Context context, String apiKey, String userId) {
-        Amplitude.getInstance(instanceName).initialize(context, apiKey, userId);
+        PosemeshAmplitude.getInstance(instanceName).initialize(context, apiKey, userId);
     }
 
     public static void setTrackingOptions(String instanceName, String trackingOptionsJson) {
@@ -100,40 +100,40 @@ public class PosemeshAmplitudePlugin {
         if (trackingOptionsDict.optBoolean("disableVersionName", false)) {
             trackingOptions.disableVersionName();
         }
-        Amplitude.getInstance(instanceName).setTrackingOptions(trackingOptions);
+        PosemeshAmplitude.getInstance(instanceName).setTrackingOptions(trackingOptions);
     }
 
     public static void enableForegroundTracking(String instanceName, Application app) {
-        Amplitude.getInstance(instanceName).enableForegroundTracking(app);
+        PosemeshAmplitude.getInstance(instanceName).enableForegroundTracking(app);
     }
 
     public static void enableCoppaControl(String instanceName) {
-        Amplitude.getInstance(instanceName).enableCoppaControl();
+        PosemeshAmplitude.getInstance(instanceName).enableCoppaControl();
     }
 
     public static void disableCoppaControl(String instanceName) {
-        Amplitude.getInstance(instanceName).disableCoppaControl();
+        PosemeshAmplitude.getInstance(instanceName).disableCoppaControl();
     }
 
     public static void setLibraryName(String instanceName, String libraryName) {
-        Amplitude.getInstance(instanceName).setLibraryName(libraryName);
+        PosemeshAmplitude.getInstance(instanceName).setLibraryName(libraryName);
     }
 
     public static void setLibraryVersion(String instanceName, String libraryVersion) {
-        Amplitude.getInstance(instanceName).setLibraryVersion(libraryVersion);
+        PosemeshAmplitude.getInstance(instanceName).setLibraryVersion(libraryVersion);
     }
 
     public static void setServerUrl(String instanceName, String serverUrl) {
-        Amplitude.getInstance(instanceName).setServerUrl(serverUrl);
+        PosemeshAmplitude.getInstance(instanceName).setServerUrl(serverUrl);
     }
 
     public static void setServerZone(String instanceName, String serverZone, boolean updateServerUrl) {
         AmplitudeServerZone amplitudeServerZone = AmplitudeServerZone.getServerZone(serverZone);
-        Amplitude.getInstance(instanceName).setServerZone(amplitudeServerZone, updateServerUrl);
+        PosemeshAmplitude.getInstance(instanceName).setServerZone(amplitudeServerZone, updateServerUrl);
     }
 
     public static void setUseDynamicConfig(String instanceName, boolean useDynamicConfig) {
-        Amplitude.getInstance(instanceName).setUseDynamicConfig(useDynamicConfig);
+        PosemeshAmplitude.getInstance(instanceName).setUseDynamicConfig(useDynamicConfig);
     }
 
     @Deprecated
@@ -143,71 +143,71 @@ public class PosemeshAmplitudePlugin {
     public static void endSession() { return; }
 
     public static void logEvent(String instanceName, String event) {
-        Amplitude.getInstance(instanceName).logEvent(event);
+        PosemeshAmplitude.getInstance(instanceName).logEvent(event);
     }
 
     public static void logEvent(String instanceName, String event, String jsonProperties) {
-        Amplitude.getInstance(instanceName).logEvent(event, ToJSONObject(jsonProperties));
+        PosemeshAmplitude.getInstance(instanceName).logEvent(event, ToJSONObject(jsonProperties));
     }
 
     public static void logEvent(String instanceName, String event, String jsonProperties, boolean outOfSession) {
-        Amplitude.getInstance(instanceName).logEvent(event, ToJSONObject(jsonProperties), outOfSession);
+        PosemeshAmplitude.getInstance(instanceName).logEvent(event, ToJSONObject(jsonProperties), outOfSession);
     }
 
     public static void uploadEvents(String instanceName) {
-        Amplitude.getInstance(instanceName).uploadEvents();
+        PosemeshAmplitude.getInstance(instanceName).uploadEvents();
     }
 
     public static void useAdvertisingIdForDeviceId(String instanceName) {
-        Amplitude.getInstance(instanceName).useAdvertisingIdForDeviceId();
+        PosemeshAmplitude.getInstance(instanceName).useAdvertisingIdForDeviceId();
     }
 
     public static void useAppSetIdForDeviceId(String instanceName) {
-        Amplitude.getInstance(instanceName).useAppSetIdForDeviceId();
+        PosemeshAmplitude.getInstance(instanceName).useAppSetIdForDeviceId();
     }
 
     public static void setOffline(String instanceName, boolean offline) {
-        Amplitude.getInstance(instanceName).setOffline(offline);
+        PosemeshAmplitude.getInstance(instanceName).setOffline(offline);
     }
 
     public static void setUserId(String instanceName, String userId) {
-        Amplitude.getInstance(instanceName).setUserId(userId);
+        PosemeshAmplitude.getInstance(instanceName).setUserId(userId);
     }
 
     public static void setOptOut(String instanceName, boolean enabled) {
-        Amplitude.getInstance(instanceName).setOptOut(enabled);
+        PosemeshAmplitude.getInstance(instanceName).setOptOut(enabled);
     }
 
     public static void setMinTimeBetweenSessionsMillis(String instanceName, long minTimeBetweenSessionsMillis) {
-        Amplitude.getInstance(instanceName).setMinTimeBetweenSessionsMillis(minTimeBetweenSessionsMillis);
+        PosemeshAmplitude.getInstance(instanceName).setMinTimeBetweenSessionsMillis(minTimeBetweenSessionsMillis);
     }
 
     public static void setEventUploadPeriodMillis(String instanceName, int eventUploadPeriodMillis) {
-        Amplitude.getInstance(instanceName).setEventUploadPeriodMillis(eventUploadPeriodMillis);
+        PosemeshAmplitude.getInstance(instanceName).setEventUploadPeriodMillis(eventUploadPeriodMillis);
     }
 
     public static void setUserProperties(String instanceName, String jsonProperties) {
-        Amplitude.getInstance(instanceName).setUserProperties(ToJSONObject(jsonProperties));
+        PosemeshAmplitude.getInstance(instanceName).setUserProperties(ToJSONObject(jsonProperties));
     }
 
     public static void setGroup(String instanceName, String groupType, String groupName) {
-        Amplitude.getInstance(instanceName).setGroup(groupType, groupName);
+        PosemeshAmplitude.getInstance(instanceName).setGroup(groupType, groupName);
     }
 
     public static void setGroup(String instanceName, String groupType, String[] groupName) {
-        Amplitude.getInstance(instanceName).setGroup(groupType, ToJSONArray(groupName));
+        PosemeshAmplitude.getInstance(instanceName).setGroup(groupType, ToJSONArray(groupName));
     }
 
     public static void logRevenue(String instanceName, double amount) {
-        Amplitude.getInstance(instanceName).logRevenue(amount);
+        PosemeshAmplitude.getInstance(instanceName).logRevenue(amount);
     }
 
     public static void logRevenue(String instanceName, String productId, int quantity, double price) {
-        Amplitude.getInstance(instanceName).logRevenue(productId, quantity, price);
+        PosemeshAmplitude.getInstance(instanceName).logRevenue(productId, quantity, price);
     }
 
     public static void logRevenue(String instanceName, String productId, int quantity, double price, String receipt, String receiptSignature) {
-        Amplitude.getInstance(instanceName).logRevenue(productId, quantity, price, receipt, receiptSignature);
+        PosemeshAmplitude.getInstance(instanceName).logRevenue(productId, quantity, price, receipt, receiptSignature);
     }
 
     public static void logRevenue(String instanceName, String productId, int quantity, double price, String receipt, String receiptSignature, String revenueType, String jsonProperties) {
@@ -224,64 +224,64 @@ public class PosemeshAmplitudePlugin {
         if (!Utils.isEmptyString(jsonProperties)) {
             revenue.setEventProperties(ToJSONObject(jsonProperties));
         }
-        Amplitude.getInstance(instanceName).logRevenueV2(revenue);
+        PosemeshAmplitude.getInstance(instanceName).logRevenueV2(revenue);
     }
 
     public static String getDeviceId(String instanceName) {
-        return Amplitude.getInstance(instanceName).getDeviceId();
+        return PosemeshAmplitude.getInstance(instanceName).getDeviceId();
     }
 
     public static void setDeviceId(String instanceName, String deviceId) {
-        Amplitude.getInstance(instanceName).setDeviceId(deviceId);
+        PosemeshAmplitude.getInstance(instanceName).setDeviceId(deviceId);
     }
 
-    public static void regenerateDeviceId(String instanceName) { Amplitude.getInstance(instanceName).regenerateDeviceId(); }
+    public static void regenerateDeviceId(String instanceName) { PosemeshAmplitude.getInstance(instanceName).regenerateDeviceId(); }
 
     public static void trackSessionEvents(String instanceName, boolean enabled) {
-        Amplitude.getInstance(instanceName).trackSessionEvents(enabled);
+        PosemeshAmplitude.getInstance(instanceName).trackSessionEvents(enabled);
     }
 
-    public static long getSessionId(String instanceName) { return Amplitude.getInstance(instanceName).getSessionId(); }
+    public static long getSessionId(String instanceName) { return PosemeshAmplitude.getInstance(instanceName).getSessionId(); }
 
     // User Property Operations
 
     // clear user properties
     public static void clearUserProperties(String instanceName) {
-        Amplitude.getInstance(instanceName).clearUserProperties();
+        PosemeshAmplitude.getInstance(instanceName).clearUserProperties();
     }
 
     // unset user property
     public static void unsetUserProperty(String instanceName, String property) {
-        Amplitude.getInstance(instanceName).identify(new Identify().unset(property));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().unset(property));
     }
 
     // setOnce user property
     public static void setOnceUserProperty(String instanceName, String property, boolean value) {
-        Amplitude.getInstance(instanceName).identify(new Identify().setOnce(property, value));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().setOnce(property, value));
     }
 
     public static void setOnceUserProperty(String instanceName, String property, double value) {
-        Amplitude.getInstance(instanceName).identify(new Identify().setOnce(property, value));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().setOnce(property, value));
     }
 
     public static void setOnceUserProperty(String instanceName, String property, float value) {
-        Amplitude.getInstance(instanceName).identify(new Identify().setOnce(property, value));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().setOnce(property, value));
     }
 
     public static void setOnceUserProperty(String instanceName, String property, int value) {
-        Amplitude.getInstance(instanceName).identify(new Identify().setOnce(property, value));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().setOnce(property, value));
     }
 
     public static void setOnceUserProperty(String instanceName, String property, long value) {
-        Amplitude.getInstance(instanceName).identify(new Identify().setOnce(property, value));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().setOnce(property, value));
     }
 
     public static void setOnceUserProperty(String instanceName, String property, String value) {
-        Amplitude.getInstance(instanceName).identify(new Identify().setOnce(property, value));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().setOnce(property, value));
     }
 
     public static void setOnceUserPropertyDict(String instanceName, String property, String values) {
-        Amplitude.getInstance(instanceName).identify(new Identify().setOnce(property, ToJSONObject(values)));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().setOnce(property, ToJSONObject(values)));
     }
 
     public static void setOnceUserPropertyList(String instanceName, String property, String values) {
@@ -289,62 +289,62 @@ public class PosemeshAmplitudePlugin {
         if (properties == null) {
             return;
         }
-        Amplitude.getInstance(instanceName).identify(new Identify().setOnce(
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().setOnce(
             property, properties.optJSONArray("list")
         ));
     }
 
     public static void setOnceUserProperty(String instanceName, String property, boolean[] values) {
-        Amplitude.getInstance(instanceName).identify(new Identify().setOnce(property, values));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().setOnce(property, values));
     }
 
     public static void setOnceUserProperty(String instanceName, String property, double[] values) {
-        Amplitude.getInstance(instanceName).identify(new Identify().setOnce(property, values));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().setOnce(property, values));
     }
 
     public static void setOnceUserProperty(String instanceName, String property, float[] values) {
-        Amplitude.getInstance(instanceName).identify(new Identify().setOnce(property, values));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().setOnce(property, values));
     }
 
     public static void setOnceUserProperty(String instanceName, String property, int[] values) {
-        Amplitude.getInstance(instanceName).identify(new Identify().setOnce(property, values));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().setOnce(property, values));
     }
 
     public static void setOnceUserProperty(String instanceName, String property, long[] values) {
-        Amplitude.getInstance(instanceName).identify(new Identify().setOnce(property, values));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().setOnce(property, values));
     }
 
     public static void setOnceUserProperty(String instanceName, String property, String[] values) {
-        Amplitude.getInstance(instanceName).identify(new Identify().setOnce(property, values));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().setOnce(property, values));
     }
 
     // set user property
     public static void setUserProperty(String instanceName, String property, boolean value) {
-        Amplitude.getInstance(instanceName).identify(new Identify().set(property, value));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().set(property, value));
     }
 
     public static void setUserProperty(String instanceName, String property, double value) {
-        Amplitude.getInstance(instanceName).identify(new Identify().set(property, value));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().set(property, value));
     }
 
     public static void setUserProperty(String instanceName, String property, float value) {
-        Amplitude.getInstance(instanceName).identify(new Identify().set(property, value));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().set(property, value));
     }
 
     public static void setUserProperty(String instanceName, String property, int value) {
-        Amplitude.getInstance(instanceName).identify(new Identify().set(property, value));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().set(property, value));
     }
 
     public static void setUserProperty(String instanceName, String property, long value) {
-        Amplitude.getInstance(instanceName).identify(new Identify().set(property, value));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().set(property, value));
     }
 
     public static void setUserProperty(String instanceName, String property, String value) {
-        Amplitude.getInstance(instanceName).identify(new Identify().set(property, value));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().set(property, value));
     }
 
     public static void setUserPropertyDict(String instanceName, String property, String values) {
-        Amplitude.getInstance(instanceName).identify(new Identify().set(property, ToJSONObject(values)));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().set(property, ToJSONObject(values)));
     }
 
     public static void setUserPropertyList(String instanceName, String property, String values) {
@@ -352,87 +352,87 @@ public class PosemeshAmplitudePlugin {
         if (properties == null) {
             return;
         }
-        Amplitude.getInstance(instanceName).identify(new Identify().set(
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().set(
                 property, properties.optJSONArray("list")
         ));
     }
 
     public static void setUserProperty(String instanceName, String property, boolean[] values) {
-        Amplitude.getInstance(instanceName).identify(new Identify().set(property, values));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().set(property, values));
     }
 
     public static void setUserProperty(String instanceName, String property, double[] values) {
-        Amplitude.getInstance(instanceName).identify(new Identify().set(property, values));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().set(property, values));
     }
 
     public static void setUserProperty(String instanceName, String property, float[] values) {
-        Amplitude.getInstance(instanceName).identify(new Identify().set(property, values));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().set(property, values));
     }
 
     public static void setUserProperty(String instanceName, String property, int[] values) {
-        Amplitude.getInstance(instanceName).identify(new Identify().set(property, values));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().set(property, values));
     }
 
     public static void setUserProperty(String instanceName, String property, long[] values) {
-        Amplitude.getInstance(instanceName).identify(new Identify().set(property, values));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().set(property, values));
     }
 
     public static void setUserProperty(String instanceName, String property, String[] values) {
-        Amplitude.getInstance(instanceName).identify(new Identify().set(property, values));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().set(property, values));
     }
 
     // add
     public static void addUserProperty(String instanceName, String property, double value) {
-        Amplitude.getInstance(instanceName).identify(new Identify().add(property, value));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().add(property, value));
     }
 
     public static void addUserProperty(String instanceName, String property, float value) {
-        Amplitude.getInstance(instanceName).identify(new Identify().add(property, value));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().add(property, value));
     }
 
     public static void addUserProperty(String instanceName, String property, int value) {
-        Amplitude.getInstance(instanceName).identify(new Identify().add(property, value));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().add(property, value));
     }
 
     public static void addUserProperty(String instanceName, String property, long value) {
-        Amplitude.getInstance(instanceName).identify(new Identify().add(property, value));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().add(property, value));
     }
 
     public static void addUserProperty(String instanceName, String property, String value) {
-        Amplitude.getInstance(instanceName).identify(new Identify().add(property, value));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().add(property, value));
     }
 
     public static void addUserPropertyDict(String instanceName, String property, String values) {
-        Amplitude.getInstance(instanceName).identify(new Identify().add(property, ToJSONObject(values)));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().add(property, ToJSONObject(values)));
     }
 
     // append user property
     public static void appendUserProperty(String instanceName, String property, boolean value) {
-        Amplitude.getInstance(instanceName).identify(new Identify().append(property, value));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().append(property, value));
     }
 
     public static void appendUserProperty(String instanceName, String property, double value) {
-        Amplitude.getInstance(instanceName).identify(new Identify().append(property, value));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().append(property, value));
     }
 
     public static void appendUserProperty(String instanceName, String property, float value) {
-        Amplitude.getInstance(instanceName).identify(new Identify().append(property, value));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().append(property, value));
     }
 
     public static void appendUserProperty(String instanceName, String property, int value) {
-        Amplitude.getInstance(instanceName).identify(new Identify().append(property, value));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().append(property, value));
     }
 
     public static void appendUserProperty(String instanceName, String property, long value) {
-        Amplitude.getInstance(instanceName).identify(new Identify().append(property, value));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().append(property, value));
     }
 
     public static void appendUserProperty(String instanceName, String property, String value) {
-        Amplitude.getInstance(instanceName).identify(new Identify().append(property, value));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().append(property, value));
     }
 
     public static void appendUserPropertyDict(String instanceName, String property, String values) {
-        Amplitude.getInstance(instanceName).identify(new Identify().append(property, ToJSONObject(values)));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().append(property, ToJSONObject(values)));
     }
 
     public static void appendUserPropertyList(String instanceName, String property, String values) {
@@ -440,62 +440,62 @@ public class PosemeshAmplitudePlugin {
         if (properties == null) {
             return;
         }
-        Amplitude.getInstance(instanceName).identify(new Identify().append(
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().append(
                 property, properties.optJSONArray("list")
         ));
     }
 
     public static void appendUserProperty(String instanceName, String property, boolean[] values) {
-        Amplitude.getInstance(instanceName).identify(new Identify().append(property, values));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().append(property, values));
     }
 
     public static void appendUserProperty(String instanceName, String property, double[] values) {
-        Amplitude.getInstance(instanceName).identify(new Identify().append(property, values));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().append(property, values));
     }
 
     public static void appendUserProperty(String instanceName, String property, float[] values) {
-        Amplitude.getInstance(instanceName).identify(new Identify().append(property, values));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().append(property, values));
     }
 
     public static void appendUserProperty(String instanceName, String property, int[] values) {
-        Amplitude.getInstance(instanceName).identify(new Identify().append(property, values));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().append(property, values));
     }
 
     public static void appendUserProperty(String instanceName, String property, long[] values) {
-        Amplitude.getInstance(instanceName).identify(new Identify().append(property, values));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().append(property, values));
     }
 
     public static void appendUserProperty(String instanceName, String property, String[] values) {
-        Amplitude.getInstance(instanceName).identify(new Identify().append(property, values));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().append(property, values));
     }
 
     //prepend user property
     public static void prependUserProperty(String instanceName, String property, boolean value) {
-        Amplitude.getInstance(instanceName).identify(new Identify().prepend(property, value));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().prepend(property, value));
     }
 
     public static void prependUserProperty(String instanceName, String property, double value) {
-        Amplitude.getInstance(instanceName).identify(new Identify().prepend(property, value));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().prepend(property, value));
     }
 
     public static void prependUserProperty(String instanceName, String property, float value) {
-        Amplitude.getInstance(instanceName).identify(new Identify().prepend(property, value));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().prepend(property, value));
     }
 
     public static void prependUserProperty(String instanceName, String property, int value) {
-        Amplitude.getInstance(instanceName).identify(new Identify().prepend(property, value));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().prepend(property, value));
     }
 
     public static void prependUserProperty(String instanceName, String property, long value) {
-        Amplitude.getInstance(instanceName).identify(new Identify().prepend(property, value));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().prepend(property, value));
     }
 
     public static void prependUserProperty(String instanceName, String property, String value) {
-        Amplitude.getInstance(instanceName).identify(new Identify().prepend(property, value));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().prepend(property, value));
     }
 
     public static void prependUserPropertyDict(String instanceName, String property, String values) {
-        Amplitude.getInstance(instanceName).identify(new Identify().prepend(property, ToJSONObject(values)));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().prepend(property, ToJSONObject(values)));
     }
 
     public static void prependUserPropertyList(String instanceName, String property, String values) {
@@ -503,62 +503,62 @@ public class PosemeshAmplitudePlugin {
         if (properties == null) {
             return;
         }
-        Amplitude.getInstance(instanceName).identify(new Identify().prepend(
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().prepend(
                 property, properties.optJSONArray("list")
         ));
     }
 
     public static void prependUserProperty(String instanceName, String property, boolean[] values) {
-        Amplitude.getInstance(instanceName).identify(new Identify().prepend(property, values));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().prepend(property, values));
     }
 
     public static void prependUserProperty(String instanceName, String property, double[] values) {
-        Amplitude.getInstance(instanceName).identify(new Identify().prepend(property, values));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().prepend(property, values));
     }
 
     public static void prependUserProperty(String instanceName, String property, float[] values) {
-        Amplitude.getInstance(instanceName).identify(new Identify().prepend(property, values));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().prepend(property, values));
     }
 
     public static void prependUserProperty(String instanceName, String property, int[] values) {
-        Amplitude.getInstance(instanceName).identify(new Identify().prepend(property, values));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().prepend(property, values));
     }
 
     public static void prependUserProperty(String instanceName, String property, long[] values) {
-        Amplitude.getInstance(instanceName).identify(new Identify().prepend(property, values));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().prepend(property, values));
     }
 
     public static void prependUserProperty(String instanceName, String property, String[] values) {
-        Amplitude.getInstance(instanceName).identify(new Identify().prepend(property, values));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().prepend(property, values));
     }
 
     //preInsert user property
     public static void preInsertUserProperty(String instanceName, String property, boolean value) {
-        Amplitude.getInstance(instanceName).identify(new Identify().preInsert(property, value));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().preInsert(property, value));
     }
 
     public static void preInsertUserProperty(String instanceName, String property, double value) {
-        Amplitude.getInstance(instanceName).identify(new Identify().preInsert(property, value));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().preInsert(property, value));
     }
 
     public static void preInsertUserProperty(String instanceName, String property, float value) {
-        Amplitude.getInstance(instanceName).identify(new Identify().preInsert(property, value));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().preInsert(property, value));
     }
 
     public static void preInsertUserProperty(String instanceName, String property, int value) {
-        Amplitude.getInstance(instanceName).identify(new Identify().preInsert(property, value));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().preInsert(property, value));
     }
 
     public static void preInsertUserProperty(String instanceName, String property, long value) {
-        Amplitude.getInstance(instanceName).identify(new Identify().preInsert(property, value));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().preInsert(property, value));
     }
 
     public static void preInsertUserProperty(String instanceName, String property, String value) {
-        Amplitude.getInstance(instanceName).identify(new Identify().preInsert(property, value));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().preInsert(property, value));
     }
 
     public static void preInsertUserPropertyDict(String instanceName, String property, String values) {
-        Amplitude.getInstance(instanceName).identify(new Identify().preInsert(property, ToJSONObject(values)));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().preInsert(property, ToJSONObject(values)));
     }
 
     public static void preInsertUserPropertyList(String instanceName, String property, String values) {
@@ -566,62 +566,62 @@ public class PosemeshAmplitudePlugin {
         if (properties == null) {
             return;
         }
-        Amplitude.getInstance(instanceName).identify(new Identify().preInsert(
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().preInsert(
                 property, properties.optJSONArray("list")
         ));
     }
 
     public static void preInsertUserProperty(String instanceName, String property, boolean[] values) {
-        Amplitude.getInstance(instanceName).identify(new Identify().preInsert(property, values));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().preInsert(property, values));
     }
 
     public static void preInsertUserProperty(String instanceName, String property, double[] values) {
-        Amplitude.getInstance(instanceName).identify(new Identify().preInsert(property, values));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().preInsert(property, values));
     }
 
     public static void preInsertUserProperty(String instanceName, String property, float[] values) {
-        Amplitude.getInstance(instanceName).identify(new Identify().preInsert(property, values));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().preInsert(property, values));
     }
 
     public static void preInsertUserProperty(String instanceName, String property, int[] values) {
-        Amplitude.getInstance(instanceName).identify(new Identify().preInsert(property, values));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().preInsert(property, values));
     }
 
     public static void preInsertUserProperty(String instanceName, String property, long[] values) {
-        Amplitude.getInstance(instanceName).identify(new Identify().preInsert(property, values));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().preInsert(property, values));
     }
 
     public static void preInsertUserProperty(String instanceName, String property, String[] values) {
-        Amplitude.getInstance(instanceName).identify(new Identify().preInsert(property, values));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().preInsert(property, values));
     }
 
     //postInsert user property
     public static void postInsertUserProperty(String instanceName, String property, boolean value) {
-        Amplitude.getInstance(instanceName).identify(new Identify().postInsert(property, value));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().postInsert(property, value));
     }
 
     public static void postInsertUserProperty(String instanceName, String property, double value) {
-        Amplitude.getInstance(instanceName).identify(new Identify().postInsert(property, value));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().postInsert(property, value));
     }
 
     public static void postInsertUserProperty(String instanceName, String property, float value) {
-        Amplitude.getInstance(instanceName).identify(new Identify().postInsert(property, value));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().postInsert(property, value));
     }
 
     public static void postInsertUserProperty(String instanceName, String property, int value) {
-        Amplitude.getInstance(instanceName).identify(new Identify().postInsert(property, value));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().postInsert(property, value));
     }
 
     public static void postInsertUserProperty(String instanceName, String property, long value) {
-        Amplitude.getInstance(instanceName).identify(new Identify().postInsert(property, value));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().postInsert(property, value));
     }
 
     public static void postInsertUserProperty(String instanceName, String property, String value) {
-        Amplitude.getInstance(instanceName).identify(new Identify().postInsert(property, value));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().postInsert(property, value));
     }
 
     public static void postInsertUserPropertyDict(String instanceName, String property, String values) {
-        Amplitude.getInstance(instanceName).identify(new Identify().postInsert(property, ToJSONObject(values)));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().postInsert(property, ToJSONObject(values)));
     }
 
     public static void postInsertUserPropertyList(String instanceName, String property, String values) {
@@ -629,62 +629,62 @@ public class PosemeshAmplitudePlugin {
         if (properties == null) {
             return;
         }
-        Amplitude.getInstance(instanceName).identify(new Identify().postInsert(
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().postInsert(
                 property, properties.optJSONArray("list")
         ));
     }
 
     public static void postInsertUserProperty(String instanceName, String property, boolean[] values) {
-        Amplitude.getInstance(instanceName).identify(new Identify().postInsert(property, values));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().postInsert(property, values));
     }
 
     public static void postInsertUserProperty(String instanceName, String property, double[] values) {
-        Amplitude.getInstance(instanceName).identify(new Identify().postInsert(property, values));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().postInsert(property, values));
     }
 
     public static void postInsertUserProperty(String instanceName, String property, float[] values) {
-        Amplitude.getInstance(instanceName).identify(new Identify().postInsert(property, values));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().postInsert(property, values));
     }
 
     public static void postInsertUserProperty(String instanceName, String property, int[] values) {
-        Amplitude.getInstance(instanceName).identify(new Identify().postInsert(property, values));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().postInsert(property, values));
     }
 
     public static void postInsertUserProperty(String instanceName, String property, long[] values) {
-        Amplitude.getInstance(instanceName).identify(new Identify().postInsert(property, values));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().postInsert(property, values));
     }
 
     public static void postInsertUserProperty(String instanceName, String property, String[] values) {
-        Amplitude.getInstance(instanceName).identify(new Identify().postInsert(property, values));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().postInsert(property, values));
     }
 
     //remove user property
     public static void removeUserProperty(String instanceName, String property, boolean value) {
-        Amplitude.getInstance(instanceName).identify(new Identify().remove(property, value));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().remove(property, value));
     }
 
     public static void removeUserProperty(String instanceName, String property, double value) {
-        Amplitude.getInstance(instanceName).identify(new Identify().remove(property, value));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().remove(property, value));
     }
 
     public static void removeUserProperty(String instanceName, String property, float value) {
-        Amplitude.getInstance(instanceName).identify(new Identify().remove(property, value));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().remove(property, value));
     }
 
     public static void removeUserProperty(String instanceName, String property, int value) {
-        Amplitude.getInstance(instanceName).identify(new Identify().remove(property, value));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().remove(property, value));
     }
 
     public static void removeUserProperty(String instanceName, String property, long value) {
-        Amplitude.getInstance(instanceName).identify(new Identify().remove(property, value));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().remove(property, value));
     }
 
     public static void removeUserProperty(String instanceName, String property, String value) {
-        Amplitude.getInstance(instanceName).identify(new Identify().remove(property, value));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().remove(property, value));
     }
 
     public static void removeUserPropertyDict(String instanceName, String property, String values) {
-        Amplitude.getInstance(instanceName).identify(new Identify().remove(property, ToJSONObject(values)));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().remove(property, ToJSONObject(values)));
     }
 
     public static void removeUserPropertyList(String instanceName, String property, String values) {
@@ -692,32 +692,32 @@ public class PosemeshAmplitudePlugin {
         if (properties == null) {
             return;
         }
-        Amplitude.getInstance(instanceName).identify(new Identify().remove(
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().remove(
                 property, properties.optJSONArray("list")
         ));
     }
 
     public static void removeUserProperty(String instanceName, String property, boolean[] values) {
-        Amplitude.getInstance(instanceName).identify(new Identify().remove(property, values));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().remove(property, values));
     }
 
     public static void removeUserProperty(String instanceName, String property, double[] values) {
-        Amplitude.getInstance(instanceName).identify(new Identify().remove(property, values));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().remove(property, values));
     }
 
     public static void removeUserProperty(String instanceName, String property, float[] values) {
-        Amplitude.getInstance(instanceName).identify(new Identify().remove(property, values));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().remove(property, values));
     }
 
     public static void removeUserProperty(String instanceName, String property, int[] values) {
-        Amplitude.getInstance(instanceName).identify(new Identify().remove(property, values));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().remove(property, values));
     }
 
     public static void removeUserProperty(String instanceName, String property, long[] values) {
-        Amplitude.getInstance(instanceName).identify(new Identify().remove(property, values));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().remove(property, values));
     }
 
     public static void removeUserProperty(String instanceName, String property, String[] values) {
-        Amplitude.getInstance(instanceName).identify(new Identify().remove(property, values));
+        PosemeshAmplitude.getInstance(instanceName).identify(new Identify().remove(property, values));
     }
 }

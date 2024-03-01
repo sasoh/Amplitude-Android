@@ -18,7 +18,7 @@ import org.json.JSONObject;
  * <b>Note:</b> the total revenue amount is calculated as price * quantity.
  * <br><br>
  * After creating a Revenue object and setting the desired transaction properties, send it to
- * Amplitude servers by calling {@code Amplitude.getInstance().logRevenueV2(revenue);} and pass in
+ * Amplitude servers by calling {@code PosemeshAmplitude.getInstance().logRevenueV2(revenue);} and pass in
  * the object.
  *
  * @see <a href="https://github.com/amplitude/Amplitude-Android#tracking-revenue">

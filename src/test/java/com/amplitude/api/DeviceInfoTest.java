@@ -307,7 +307,7 @@ public class DeviceInfoTest extends BaseTest {
 
         Robolectric.getForegroundThreadScheduler().advanceTo(1);
 
-        AmplitudeClient client = Amplitude.getInstance("ADID");
+        AmplitudeClient client = PosemeshAmplitudegetInstance("ADID");
         client.useAdvertisingIdForDeviceId();
         client.initialize(context, "1cc2c1978ebab0f6451112a8f5df4f4e");
         ShadowLooper looper = Shadows.shadowOf(client.logThread.getLooper());
@@ -333,7 +333,7 @@ public class DeviceInfoTest extends BaseTest {
 
         Robolectric.getForegroundThreadScheduler().advanceTo(1);
 
-        AmplitudeClient client = Amplitude.getInstance("NoADID");
+        AmplitudeClient client = PosemeshAmplitudegetInstance("NoADID");
         client.useAdvertisingIdForDeviceId();
         client.initialize(context, "1cc2c1978ebab0f6451112a8f5df4f4e");
         ShadowLooper looper = Shadows.shadowOf(client.logThread.getLooper());

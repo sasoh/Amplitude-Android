@@ -115,7 +115,7 @@ public class BaseTest {
         // Clear the database helper for each test. Better to have isolation.
         // See https://github.com/robolectric/robolectric/issues/569
         // and https://github.com/robolectric/robolectric/issues/1622
-        Amplitude.instances.clear();
+        PosemeshAmplitudeinstances.clear();
         DatabaseHelper.instances.clear();
 
         if (withServer) {
