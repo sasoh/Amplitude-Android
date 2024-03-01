@@ -1,4 +1,4 @@
-package com.amplitude.api.util;
+package com.posemeshamplitude.api.util;
 
 import java.io.IOException;
 import java.net.URL;

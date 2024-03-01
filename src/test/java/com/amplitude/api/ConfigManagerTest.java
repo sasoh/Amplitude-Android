@@ -1,10 +1,10 @@
-package com.amplitude.api;
+package com.posemeshamplitude.api;
 
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
-import com.amplitude.api.util.MockHttpURLConnectionHelper;
-import com.amplitude.api.util.MockURLStreamHandler;
+import com.posemeshamplitude.api.util.MockHttpURLConnectionHelper;
+import com.posemeshamplitude.api.util.MockURLStreamHandler;
 
 import org.json.JSONObject;
 import org.junit.Test;

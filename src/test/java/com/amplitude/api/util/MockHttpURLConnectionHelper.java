@@ -1,4 +1,4 @@
-package com.amplitude.api.util;
+package com.posemeshamplitude.api.util;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;

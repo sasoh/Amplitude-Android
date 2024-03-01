@@ -1,4 +1,4 @@
-package com.amplitude.api;
+package com.posemeshamplitude.api;
 
 import android.os.SystemClock;
 
