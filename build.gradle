@@ -64,7 +64,6 @@ android {
 }
 
 dependencies {
-    implementation 'com.amplitude:analytics-connector:1.0.0'
     implementation 'com.squareup.okhttp3:okhttp:4.2.2'
     testImplementation 'com.squareup.okhttp3:mockwebserver:4.2.2'
     testImplementation 'org.robolectric:robolectric:4.3.1'
@@ -143,9 +142,6 @@ uploadArchives {
 
         pom.whenConfigured { pom ->
             pom.dependencies*.optional = true
-            pom.dependencies.find { dep ->
-                dep.groupId == 'com.amplitude' && dep.artifactId == 'analytics-connector'
-            }.optional = false
         }
 
         repository(url: RELEASE_REPOSITORY_URL) {
