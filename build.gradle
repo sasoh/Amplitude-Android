@@ -71,6 +71,7 @@ android {
 // ======== For shadowJar 6.1.0 Build ========
 // The following custom code is used specifically when building on Android (using 'com.android.library').
 // It may also not work for newer versions of shadowJar.
+// This method involves running a pre-build task (relocateJarPackages) in a pre-build configuration (shadowing).
 
 // define new configuration(s)
 configurations {
@@ -78,6 +79,7 @@ configurations {
 }
 
 // define task to generate shadowed libs, must be defined before dependencies
+// you can also test the output of this task only by cmd> 'gradle relocateJarPackages'
 task relocateJarPackages (type: com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar) {
        
     classifier = 'shadowed' // this is a suffix applied to the resulting .jar name with shadowed libraries   
@@ -92,6 +94,8 @@ task relocateJarPackages (type: com.github.jengelman.gradle.plugins.shadow.tasks
                }
            }
        }
+       // you could use something similar if you want to remove a dot:
+       // relocate pkg, [prefix, pkg].join('.')
     }
     
     // function for doing the full relocation of a package
@@ -100,12 +104,17 @@ task relocateJarPackages (type: com.github.jengelman.gradle.plugins.shadow.tasks
     }
     
     // List of jar packages to relocate.
+    // Note: when unzipping a .jar, each subfolder is a package, i.e. "/org/intellij" is "org.intellij"
     relocatePackage 'okhttp3'
     // which depends on:
         relocatePackage 'okio'
         relocatePackage 'kotlin'
         relocatePackage 'org.intellij'    // this only contains annotations
         relocatePackage 'org.jetbrains'   // this only contains annotations
+    // you can exclude sub packages with: 
+    /*  relocatePackageWithExclusions 'org.intellij', [
+            'org/intellij/whatever/**', 
+            'org/intellij/whatever2/**'] */
     
     configurations = [project.configurations.shadowing] // links this task to our configuration from above
 }
@@ -114,11 +123,12 @@ task relocateJarPackages (type: com.github.jengelman.gradle.plugins.shadow.tasks
 
 
 dependencies {
+
     // implementation 'com.squareup.okhttp3:okhttp:4.2.2'
 
     // ======== For shadowJar 6.1.0 Build ========
-    shadowing 'com.squareup.okhttp3:okhttp:4.2.2'          // this lib is input in the shadowing step (included with all its sub-dependencies)
-    implementation tasks.relocateJarPackages.outputs.files // our project will embed the output of shadowing step
+    shadowing 'com.squareup.okhttp3:okhttp:4.2.2'          // this lib is "input" (dependency) of the shadowing step (included with all its sub-dependencies)
+    implementation tasks.relocateJarPackages.outputs.files // our project will embed the output of the shadowing step
     
     testImplementation 'com.squareup.okhttp3:mockwebserver:4.2.2'
     testImplementation 'org.robolectric:robolectric:4.3.1'
