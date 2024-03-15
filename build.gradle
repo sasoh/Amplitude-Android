@@ -9,12 +9,17 @@ buildscript {
 
     dependencies {
         classpath 'com.android.tools.build:gradle:3.5.2'
+        classpath 'com.github.jengelman.gradle.plugins:shadow:6.1.0'    // max shadowJar version on gradle 6.x
     }
 }
 
 apply plugin: 'com.android.library'
 apply plugin: 'maven'
 apply plugin: 'signing'
+apply plugin: 'com.github.johnrengelman.shadow'    // required by shadowJar
+// shadowJar warning: when building for android (using com.android.library):
+// 1 - we cannot use -- apply plugin: 'java' --
+// 2 - official shadowJar documentation does not cover this case
 
 ext {
     artifactId = 'amplitude-android-sdk'
@@ -63,8 +68,31 @@ android {
     }
 }
 
+// ======== For shadowJar 6.1.0 Build ========
+// The following custom code is used specifically when building on Android (using 'com.android.library').
+// It may also not work for newer versions of shadowJar.
+
+// define new configuration(s)
+configurations {
+   shadowing // we define an additional configuration (or step), which will run before build
+}
+
+// define task to generate shadowed libs, must be defined before dependencies
+task relocateJarPackages (type: com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar) {
+   classifier = 'shadowed' // this is a suffix applied to the resulting .jar name with shadowed libraries   
+   configurations = [project.configurations.shadowing] // links this task to our configuration from above
+}
+
+// =====================================
+
+
 dependencies {
-    implementation 'com.squareup.okhttp3:okhttp:4.2.2'
+    // implementation 'com.squareup.okhttp3:okhttp:4.2.2'
+
+    // ======== For shadowJar 6.1.0 Build ========
+    shadowing 'com.squareup.okhttp3:okhttp:4.2.2'          // this lib is input in the shadowing step (included with all its sub-dependencies)
+    implementation tasks.relocateJarPackages.outputs.files // our project will embed the output of shadowing step
+    
     testImplementation 'com.squareup.okhttp3:mockwebserver:4.2.2'
     testImplementation 'org.robolectric:robolectric:4.3.1'
     testImplementation 'org.robolectric:shadows-maps:3.4-rc2'
