@@ -22,9 +22,9 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
 
-import okhttp3.OkHttpClient;
-import okio.Buffer;
-import okio.ByteString;
+import auki.okhttp3.OkHttpClient;
+import auki.okio.Buffer;
+import auki.okio.ByteString;
 
 /**
  * <h1>PinnedAmplitudeClient</h1>

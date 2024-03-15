@@ -28,12 +28,12 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.net.URL;
 import java.net.HttpURLConnection;
 
-import kotlin.Unit;
-import okhttp3.Call;
-import okhttp3.FormBody;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
+import auki.kotlin.Unit;
+import auki.okhttp3.Call;
+import auki.okhttp3.FormBody;
+import auki.okhttp3.OkHttpClient;
+import auki.okhttp3.Request;
+import auki.okhttp3.Response;
 
 /**
  * <h1>AmplitudeClient</h1>

@@ -74,13 +74,40 @@ android {
 
 // define new configuration(s)
 configurations {
-   shadowing // we define an additional configuration (or step), which will run before build
+    shadowing // we define an additional configuration (or step), which will run before build
 }
 
 // define task to generate shadowed libs, must be defined before dependencies
 task relocateJarPackages (type: com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar) {
-   classifier = 'shadowed' // this is a suffix applied to the resulting .jar name with shadowed libraries   
-   configurations = [project.configurations.shadowing] // links this task to our configuration from above
+       
+    classifier = 'shadowed' // this is a suffix applied to the resulting .jar name with shadowed libraries   
+    def prefix = "auki."    // prefix added to each package to be relocated
+    
+    // function for doing the relocation of a package with exclusions
+    def relocatePackageWithExclusions = { String pkg, List<String> exclusions ->
+       relocate (pkg, prefix + pkg) {
+           if (exclusions != null) {
+               exclusions.each { 
+                   exclude it
+               }
+           }
+       }
+    }
+    
+    // function for doing the full relocation of a package
+    def relocatePackage = { String pkg -> 
+       relocatePackageWithExclusions(pkg, [])
+    }
+    
+    // List of jar packages to relocate.
+    relocatePackage 'okhttp3'
+    // which depends on:
+        relocatePackage 'okio'
+        relocatePackage 'kotlin'
+        relocatePackage 'org.intellij'    // this only contains annotations
+        relocatePackage 'org.jetbrains'   // this only contains annotations
+    
+    configurations = [project.configurations.shadowing] // links this task to our configuration from above
 }
 
 // =====================================
