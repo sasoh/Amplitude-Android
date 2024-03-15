@@ -117,6 +117,15 @@ task relocateJarPackages (type: com.github.jengelman.gradle.plugins.shadow.tasks
             'org/intellij/whatever2/**'] */
     
     configurations = [project.configurations.shadowing] // links this task to our configuration from above
+    
+    dependencies {
+       // ShadowJar does not rename also "META-INF/*.kotlin_*"" files, so they can generate duplicate errors.
+       // However, since the relocated jars are used only by us, they should be safe to exclude.
+       // Reasons why: https://stackoverflow.com/a/73069176
+       exclude '**/*.kotlin_metadata'
+       exclude '**/*.kotlin_module'
+       exclude '**/*.kotlin_builtins'
+    }
 }
 
 // =====================================
