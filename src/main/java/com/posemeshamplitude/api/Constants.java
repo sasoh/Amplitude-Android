@@ -15,7 +15,7 @@ public class Constants {
     public static final String DYNAMIC_CONFIG_URL = "https://regionconfig.amplitude.com/";
     public static final String DYNAMIC_CONFIG_EU_URL = "https://regionconfig.eu.amplitude.com/";
 
-    public static final String PACKAGE_NAME = "com.amplitude.api";
+    public static final String PACKAGE_NAME = "com.posemeshamplitude.api";
 
     public static final int API_VERSION = 2;
 
