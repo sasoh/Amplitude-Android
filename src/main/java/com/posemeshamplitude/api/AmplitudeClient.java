@@ -634,7 +634,7 @@ public class AmplitudeClient {
      * @return the AmplitudeClient
      */
     public AmplitudeClient setServerUrl(String serverUrl) {
-        if (!Utils.isEmptyString(serverUrl)) {
+        if (serverUrl != null) {
             url = serverUrl;
         }
         return this;
@@ -2239,6 +2239,9 @@ public class AmplitudeClient {
      * @param maxIdentifyId the max identify id
      */
     protected void makeEventUploadPostRequest(Call.Factory client, String events, final long maxEventId, final long maxIdentifyId) {
+        if (url.isEmpty()) {
+            return;
+        }
         boolean uploadSuccess = false;
 
         try {
